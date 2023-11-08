@@ -20,7 +20,7 @@ pnpm --filter main dev
 该命令用于执行该项目的 `dev` 命令。
 
 
-**如何在 app 中引用 packages 中的项目？ 以 main 引用 shared-ui 为例：**
+**如何在子包中相互引用？ 以 main 引用 shared-ui 为例：**
 
 ```bash
 pnpm add shared-ui --filter main --workspace
@@ -46,7 +46,7 @@ pnpm add shared-ui --filter main --workspace
 
 **为什么修改 `share-ui` 中的文件可以直接实现热更新？**
 
-在 main 项目中声明了 `"shared-ui": "workspace:^",` 后，安装依赖时会将 `shared-ui` 包的**符号链接（symlinks）**放入 main 项目的 `node_modules` 中。
+在 main 项目中声明了 `"shared-ui": "workspace:^",` 后，安装依赖时会将 `shared-ui` 包的 **符号链接（symlinks）** 放入 main 项目的 `node_modules` 中。
 
 `vite` 为我们启动的开发服务器可以根据该符号链接判断源文件是否改变，从而实现热更新。
 
