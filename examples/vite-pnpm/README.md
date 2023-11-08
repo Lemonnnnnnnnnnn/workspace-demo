@@ -14,19 +14,19 @@ pnpm --filter <package-name> <command>
 例如我们有一个名为 vite-project（项目名字取决于 `package.json` 的 `name` 属性）的项目，则我们可以在根目录用：
 
 ```bash
-pnpm --filter vite-project dev
+pnpm --filter main dev
 ``` 
 
 该命令用于执行该项目的 `dev` 命令。
 
 
-**如何在 app 中引用 packages 中的项目？ 以 vite-project 引用 shared-ui 为例：**
+**如何在 app 中引用 packages 中的项目？ 以 main 引用 shared-ui 为例：**
 
 ```bash
-pnpm add shared-ui --filter vite-project --workspace
+pnpm add shared-ui --filter main --workspace
 ```
 
-该命令会在自动在 `vite-project/package.json` 的 `dependencies` 中以工作空间的形式添加 `shared-ui` 的依赖声明并安装依赖：
+该命令会在自动在 `main/package.json` 的 `dependencies` 中以工作空间的形式添加 `shared-ui` 的依赖声明并安装依赖：
 
 ```json
 {
@@ -41,6 +41,7 @@ pnpm add shared-ui --filter vite-project --workspace
 关于版本号：
 - https://pnpm.io/workspaces
 - https://juejin.cn/post/7057420490851221518
+
 
 **npm 与 pnpm 的工作空间有什么区别？**
 
