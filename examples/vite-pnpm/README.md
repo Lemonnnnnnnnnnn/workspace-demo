@@ -11,7 +11,7 @@
 pnpm --filter <package-name> <command>
 ```
 
-例如我们有一个名为 vite-project（项目名字取决于 `package.json` 的 `name` 属性）的项目，则我们可以在根目录用：
+例如我们有一个名为 main（项目名字取决于 `package.json` 的 `name` 属性）的项目，则我们可以在根目录用：
 
 ```bash
 pnpm --filter main dev
