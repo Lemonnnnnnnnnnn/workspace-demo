@@ -1,5 +1,8 @@
 # 工作空间
 
 - [x] vite-pnpm
-- [ ] vite-npm
+- [x] vite-npm
 - [ ] webpack-pnpm
+  - [x] js 
+  - [ ] jsx
+  - [ ] tsx

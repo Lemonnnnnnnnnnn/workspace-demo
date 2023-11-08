@@ -43,21 +43,25 @@ pnpm add shared-ui --filter main --workspace
 - https://juejin.cn/post/7057420490851221518
 
 
-**npm 与 pnpm 的工作空间有什么区别？**
-
-pnpm 用单独的 `pnpm-workspace.yaml` 配置文件来单独管理 menorepo 的配置项。而 npm 则将这些配置写在 `pakcage.json` 中的 "workspaces" 属性中. 
-
-
-**为什么 `share-ui` 中的 ts 文件可以直接被引入？**
-
-因为在 main 项目中声明了 `"shared-ui": "workspace:^",` 后，安装依赖时会将 `shared-ui` 包拷贝放入 main 项目的 `node_modules` 中。
-
-当通过 `import` 引入 `shared-ui` 时
 
 **为什么修改 `share-ui` 中的文件可以直接实现热更新？**
 
 在 main 项目中声明了 `"shared-ui": "workspace:^",` 后，安装依赖时会将 `shared-ui` 包的**符号链接（symlinks）**放入 main 项目的 `node_modules` 中。
 
 `vite` 为我们启动的开发服务器可以根据该符号链接判断源文件是否改变，从而实现热更新。
+
+
+
+**为什么 `share-ui` 中的 ts 文件可以直接被引入？**
+
+Vite 在开发时会用 `Connect` 库启动一个本地服务器。在引入 `share-ui` 库时，实际上浏览器会向该服务器请求一个 ts 文件（根据软连接请求 share-ui 子包的源 ts 文件）：
+
+```js
+import { Button, A, B } from "/@fs/D:/code/personal/workspace-demo/examples/vite-pnpm/packages/shared-ui/src/index.ts";
+```
+
+浏览器请求 `ts` 文件时，会在该服务器进行转换，返回给浏览器解析后的 `js` 文件。
+
+参考：https://juejin.cn/post/7060673531389935653
 
 
