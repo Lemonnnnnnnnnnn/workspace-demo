@@ -1,0 +1,12 @@
+{
+  "name": "umi-antd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm --filter main dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

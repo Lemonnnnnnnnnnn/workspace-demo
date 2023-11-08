@@ -6,3 +6,4 @@
   - [x] js 
   - [ ] jsx
   - [ ] tsx
+- [x] umi-antd
