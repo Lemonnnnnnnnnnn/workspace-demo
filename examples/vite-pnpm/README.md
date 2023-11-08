@@ -50,4 +50,14 @@ pnpm 用单独的 `pnpm-workspace.yaml` 配置文件来单独管理 menorepo 的
 
 **为什么 `share-ui` 中的 ts 文件可以直接被引入？**
 
+因为在 main 项目中声明了 `"shared-ui": "workspace:^",` 后，安装依赖时会将 `shared-ui` 包拷贝放入 main 项目的 `node_modules` 中。
+
+当通过 `import` 引入 `shared-ui` 时
+
 **为什么修改 `share-ui` 中的文件可以直接实现热更新？**
+
+在 main 项目中声明了 `"shared-ui": "workspace:^",` 后，安装依赖时会将 `shared-ui` 包的**符号链接（symlinks）**放入 main 项目的 `node_modules` 中。
+
+`vite` 为我们启动的开发服务器可以根据该符号链接判断源文件是否改变，从而实现热更新。
+
+
