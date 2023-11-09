@@ -32,7 +32,7 @@ export default function GlobalLayout() {
   return (
     <Layout>
       <Header style={{ display: "flex", alignItems: "center" }}>
-        <span style={{color : '#fff'}}>header</s>
+        <span style={{color : '#fff'}}>header</span>
       </Header>
       <Content style={{ padding: "0 50px" }}>
         <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
