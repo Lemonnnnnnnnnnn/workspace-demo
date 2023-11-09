@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run dev -w main"
+    "dev": "npm run dev -w main",
+    "build": "npm run build -w main",
+    "preview": "npm run preview -w main"
   },
   "author": "",
   "license": "ISC",

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm --filter main dev"
+    "dev": "pnpm --filter main dev",
+    "build": "pnpm --filter main build",
+    "preview": "pnpm --filter main preview"
   },
   "keywords": [],
   "author": "",

@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm --filter main dev",
+    "build": "pnpm --filter main build",
+    "preview": "npx http-server ./packages/main/dist",
     "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
   },
   "keywords": [],
