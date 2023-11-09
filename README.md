@@ -2,8 +2,7 @@
 
 - [x] vite-pnpm
 - [x] vite-npm
-- [ ] webpack-pnpm
+- [x] webpack-pnpm
   - [x] js 
-  - [ ] jsx
-  - [ ] tsx
+  - [x] tsx
 - [x] umi-antd
