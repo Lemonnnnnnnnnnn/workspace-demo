@@ -11,4 +11,8 @@ export default defineConfig({
     srcDir: ["src"],
     peerDeps: true,
   },
+  esbuildMinifyIIFE:true,
+  codeSplitting:{
+    jsStrategy: "granularChunks"
+  }
 });
