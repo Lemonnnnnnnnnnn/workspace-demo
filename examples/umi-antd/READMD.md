@@ -1,13 +1,8 @@
-- [x] 热更新（目前热更新与mfsu配置）
-
-
 ## 关于热更新
 
-在 umi 中要对 `node_modules` 中的 ts 文件进行 diff 比较，需要在配置文件中添加 `extraBabelIncludes` ，表示配置需要额外用 `babel` 进行转换的包，在我们的示例中：
+UMI4提供了MFSU，加快编译速度，其默认策略和monorepo互斥。可以参考此处的 .umirc.ts 来修改配置。
 
-```js
-extraBabelIncludes: ['shared-ui'],
-```
-
-并且根据 https://github.com/umijs/umi/issues/11381 ，当前该配置与 `mfsu` 互斥，将 `mfsu` 设为 `false` 后，修改 `shared-ui` 中的组件才有热更新。
-
+参考：
+- https://umijs.org/docs/guides/mfsu
+- https://umijs.org/docs/api/config#monoreporedirect
+- https://github.com/umijs/umi/issues/11380
