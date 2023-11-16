@@ -65,3 +65,19 @@ import { Button, A, B } from "/@fs/D:/code/personal/workspace-demo/examples/vite
 参考：https://juejin.cn/post/7060673531389935653
 
 
+## 如何实现开发时依赖src，打包时依赖dist？
+
+修改package.json: 
+```json
+{
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+}
+```
+
+方法来源：[https://github.com/vitejs/vite/issues/10447](https://github.com/vitejs/vite/issues/10447)
+export 与 main 的区别：[https://stackoverflow.com/questions/68572936/what-is-the-difference-between-main-and-module-vs-exports-in-package-json](https://stackoverflow.com/questions/68572936/what-is-the-difference-between-main-and-module-vs-exports-in-package-json)
