@@ -1,4 +1,5 @@
-import { B } from "shared-ui";
+// import { B } from "shared-ui2";
+import { B } from "shared-ui2";
 
 const Page = () => {
   return (

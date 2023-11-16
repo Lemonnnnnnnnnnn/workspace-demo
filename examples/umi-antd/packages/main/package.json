@@ -13,6 +13,7 @@
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.11.0",
     "shared-ui": "workspace:^",
+    "shared-ui2": "workspace:^",
     "umi": "^4.0.87"
   },
   "devDependencies": {
