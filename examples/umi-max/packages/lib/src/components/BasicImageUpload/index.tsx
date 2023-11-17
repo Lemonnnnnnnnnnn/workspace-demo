@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Upload, UploadFile, UploadProps, message } from 'antd';
+import { Upload, type UploadFile,type UploadProps, message } from 'antd';
 import { LoadingOutlined, PlusOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';
 import cos from '../BasicFormComponent/BasicUpload/cos';
 import moment from 'moment';
@@ -7,7 +7,8 @@ import localCache from '@/utils/localCache';
 import { BasicImage } from '@/components';
 import classNames from 'classnames';
 import styles from './index.less';
-import { UploadChangeParam } from 'antd/lib/upload';
+import { type UploadChangeParam } from 'antd/lib/upload';
+
 const defaultAccept = '.jpg,.jpeg,.png,.bmp';
 const defaultFileType = ['image/jpeg', 'image/png', 'image/bmp', 'image/jpg', 'image/webp'];
 

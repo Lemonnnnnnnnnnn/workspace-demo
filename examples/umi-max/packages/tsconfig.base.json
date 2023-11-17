@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
-  "include": ["src"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
     "outDir": "dist",
@@ -12,11 +11,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleDetection": "force",
+    "allowJs": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "moduleResolution": "Bundler",
     "module": "ESNext",
     "noEmit": true,
     "lib": ["es2022", "dom", "dom.iterable"],
-  }
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+    },
+    "verbatimModuleSyntax": true
+  },
+
 }

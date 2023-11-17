@@ -1,7 +1,8 @@
 import { Image } from 'antd';
 import styles from './index.less';
-import { ImageProps } from 'antd/lib';
+import { type ImageProps } from 'antd';
 import unload from '@img/unload.png';
+
 const BasicImage: React.FC<ImageProps> = props => {
   // @ts-ignore
   const src = props?.src || props?.preview?.src || unload || 'error';

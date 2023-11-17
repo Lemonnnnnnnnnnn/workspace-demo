@@ -1,12 +1,9 @@
-import { BasicInput } from '@/components';
-import { ProForm } from '@ant-design/pro-form';
+import { ProForm } from '@ant-design/pro-components';
 import BasicFormGroup from './components/BasicFormGroup';
-import BasicFormRender from './components/BasicFormRender';
-import { Form, FormInstance } from 'antd';
-import { Children, JSXElementConstructor, ReactChildren, ReactElement, cloneElement, forwardRef, useImperativeHandle } from 'react';
+import { Form, type FormInstance } from 'antd';
+import { Children, cloneElement, forwardRef, useImperativeHandle } from 'react';
 import styles from './index.less';
-import type { ProFormProps } from '@ant-design/pro-form/lib/layouts/ProForm';
-import { isEmpty } from 'lodash';
+import {type  ProFormProps } from '@ant-design/pro-components';
 import React from 'react';
 
 export type BasicFormRef = {

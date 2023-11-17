@@ -1,5 +1,5 @@
-import { ProFormCascader } from '@ant-design/pro-form/es/components';
-import { BasicCascaderTypes } from '../types';
+import { ProFormCascader } from '@ant-design/pro-components';
+import {type BasicCascaderTypes } from '../types';
 
 export interface Option {
   value?: string | number | null;

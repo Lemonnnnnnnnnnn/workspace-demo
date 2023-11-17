@@ -1,8 +1,9 @@
 import styles from '../index.less';
 import BasicTitle from './BasicTitle';
 import BasicFormRender from './BasicFormRender';
-import { FormInstance } from 'antd';
-import { ComponentConfig } from '../types';
+import type { FormInstance } from 'antd';
+import type { ComponentConfig } from '../types';
+
 type IProps = {
   title: string;
   form: FormInstance<any>;

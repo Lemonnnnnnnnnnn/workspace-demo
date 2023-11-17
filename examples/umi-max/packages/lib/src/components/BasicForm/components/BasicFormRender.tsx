@@ -1,20 +1,18 @@
-import { Col, Form, FormInstance, Row } from 'antd';
+import { Col, Form, type FormInstance, Row } from 'antd';
 import type { ComponentConfig } from '../types';
-import * as BasicComponents from '@/components/BasicFormComponent';
-import { ProFormCascader, ProFormSwitch, ProFormDatePicker } from '@ant-design/pro-form/es/components';
+import * as BasicComponents from '@/BasicFormComponent';
+import { ProFormCascader, ProFormSwitch } from '@ant-design/pro-components';
 import { CustomRequired } from '@/utils/type';
 import { isFunction } from 'lodash';
-import { Rule } from 'antd/lib/form';
-import { rowGapLayout } from '@/consts/formlayout';
+import { type Rule } from 'antd/lib/form';
 import { produce } from 'immer';
+
+const rowGapLayout = { xs: 8, sm: 16, md: 24 };
 
 const coms = {
   ...BasicComponents,
   BasicCascader: ProFormCascader,
   BasicSwitch: ProFormSwitch,
-  // ProFormCheckbox,
-  // ProFormRadio,
-  // ProFormMoney,
 };
 
 const BasicFormItem = (componentConfig: ComponentConfig & { form: FormInstance<any> }) => {
