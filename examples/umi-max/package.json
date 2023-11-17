@@ -1,0 +1,20 @@
+{
+  "name": "umi-max",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^5.11.1",
+    "@ant-design/pro-components": "^2.6.41",
+    "@ant-design/icons": "^5.2.6"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.16"
+  }
+}
