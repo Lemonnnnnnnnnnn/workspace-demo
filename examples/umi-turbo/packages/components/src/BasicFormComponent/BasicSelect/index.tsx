@@ -9,7 +9,7 @@ const BasicSelect: React.FC<BasicSelectTypes> = props => {
   return (
     <ProFormSelect
       {...props}
-      // @ts-ignore
+      // @ts-expect-error
       fieldProps={{ getPopupContainer: (triggerNode: Element) => triggerNode.parentNode, ...fieldProps }}
       placeholder={placeholder || defaultPlaceholder}
     />

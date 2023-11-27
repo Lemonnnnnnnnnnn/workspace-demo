@@ -3,7 +3,7 @@ import styles from './index.less';
 import { type ImageProps } from 'antd';
 
 const BasicImage: React.FC<ImageProps> = props => {
-  // @ts-ignore
+  // @ts-expect-error
   const src = props?.src || props?.preview?.src || 'error';
   return (
     <Image

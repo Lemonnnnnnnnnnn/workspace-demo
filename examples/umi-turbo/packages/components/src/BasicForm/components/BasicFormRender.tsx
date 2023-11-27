@@ -1,8 +1,8 @@
 import { Col, Form, type FormInstance, Row } from "antd";
-import type { CommonComponent, ComponentConfig } from "../types";
+import type {  ComponentConfig } from "../types";
 import * as BasicComponents from "../../BasicFormComponent";
 import { ProFormSwitch } from "@ant-design/pro-components";
-import { type Rule, type RuleObject, type RuleRender } from "antd/lib/form";
+import { type Rule, type RuleObject } from "antd/lib/form";
 import { produce } from "immer";
 
 const rowGapLayout = { xs: 8, sm: 16, md: 24 };
@@ -23,7 +23,7 @@ const coms = {
 };
 
 const BasicFormItem = (
-  componentConfig: ComponentConfig & { form: FormInstance<any> }
+  componentConfig: ComponentConfig & { form: FormInstance }
 ) => {
   const {
     RenderFormItem,
@@ -33,7 +33,7 @@ const BasicFormItem = (
     form,
   } = componentConfig;
   if (component === "custom") {
-    // @ts-ignore
+    // @ts-expect-error
     return renderCustomFormItem({ itemProps, col, RenderFormItem, form });
   } else {
     const Item = coms[component];
@@ -41,7 +41,7 @@ const BasicFormItem = (
 
     return (
       <Col span={col}>
-        {/* @ts-ignore */}
+        {/* @ts-expect-error */}
         <Item {...itemProps} label={itemProps.label} rules={rules} />
       </Col>
     );
@@ -57,8 +57,6 @@ const renderCustomFormItem = ({
 }: CustomRequired<ComponentConfig, "RenderFormItem"> & {
   form: FormInstance<any>;
 }) => {
-  const { fieldProps: _fieldProps } = itemProps;
-
   return (
     <Col span={col}>
       <Form.Item {...itemProps}>{RenderFormItem(form)}</Form.Item>
@@ -85,7 +83,7 @@ const addonRequired = ({ itemProps }: Pick<ComponentConfig, "itemProps">) => {
 const hasOwnRequired = (rules?: Rule[]) => {
   if (!rules) return false;
   let result = false;
-  for (let rule of rules) {
+  for (const rule of rules) {
     if (isFunction(rule)) {
       continue;
     } else {

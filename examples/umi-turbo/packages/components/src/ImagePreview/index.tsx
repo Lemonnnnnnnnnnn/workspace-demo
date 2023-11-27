@@ -31,23 +31,23 @@ export default forwardRef<
 
   //放大
   const imgToBigger = () => {
-    let a = parseInt(imgScale) + 5 + "%";
+    const a = parseInt(imgScale) + 5 + "%";
     setImgScale(a);
   };
   //缩小
   const imgToSmaller = () => {
-    let a = parseInt(imgScale) + -5 + "%";
+    const a = parseInt(imgScale) + -5 + "%";
     setImgScale(a);
   };
   //左旋转
   const imgToLeftRoll = () => {
-    let a = (imgCurrent - 90) % 360;
+    const a = (imgCurrent - 90) % 360;
     setImgCurrent(a);
     setImgTransform("rotate(" + a + "deg)");
   };
   //右旋转
   const imgToRightRoll = () => {
-    let a = (imgCurrent + 90) % 360;
+    const a = (imgCurrent + 90) % 360;
 
     setImgCurrent(a);
     setImgTransform("rotate(" + a + "deg)");
@@ -55,12 +55,12 @@ export default forwardRef<
   // 下载
   const downloadImage = () => {
     const xhr = new XMLHttpRequest();
-    let url = imgSrc;
+    const url = imgSrc;
     xhr.responseType = "blob";
     xhr.onload = function () {
       if (xhr.status == 200) {
-        let blob = this.response;
-        let a: HTMLAnchorElement = document.createElement("a");
+        const blob = this.response;
+        const a: HTMLAnchorElement = document.createElement("a");
 
         a.setAttribute("style", "display:none");
 

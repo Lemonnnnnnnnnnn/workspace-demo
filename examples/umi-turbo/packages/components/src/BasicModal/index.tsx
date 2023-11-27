@@ -19,7 +19,7 @@ const BasicModal: React.FC<ModalProps & Props> = ({ size, bodyHeight, loading, c
     setBtnLoading(true);
     const result = _onOk(e);
 
-    // @ts-ignore
+    // @ts-expect-error
     if (result instanceof Promise) {
       result.finally(() => {
         setBtnLoading(false);

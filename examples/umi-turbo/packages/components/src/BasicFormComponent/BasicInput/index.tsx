@@ -8,8 +8,4 @@ const Input: React.FC<BasicInputTypes> = props => {
   return <ProFormText {...props} placeholder={placeholder || defaultPlaceholder} />;
 };
 
-const WrappedInput = Input;
-
-//@ts-ignore
-WrappedInput.Password = ProFormText.Password;
-export default WrappedInput;
+export default Input;

@@ -1,6 +1,6 @@
-import { ComponentConfig } from "@cat/components/src/BasicForm/types";
+// import { ComponentConfig } from "@cat/components/src/BasicForm/types";
 import yayJpg from "../assets/yay.jpg";
-import { BasicForm, NotFound } from "@cat/components";
+// import { BasicForm, NotFound } from "@cat/components";
 
 export default function HomePage() {
 

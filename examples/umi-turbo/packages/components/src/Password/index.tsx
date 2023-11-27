@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
-import { Form, Input, type InputRef } from 'antd';
+import { Form, Input, type FormInstance, type InputRef } from 'antd';
 import styles from './index.less';
 
 interface Props {
   name: string;
-  form: any;
+  form: FormInstance;
 }
 
 const Password: React.FC<Props> = ({ name, form }) => {
