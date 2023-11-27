@@ -11,9 +11,14 @@ module.exports = {
       "./apps/*/tsconfig.json",
       "./packages/*/tsconfig.json",
     ],
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     tsconfigRootDir: __dirname,
   },
   plugins: ["@typescript-eslint"],
   root: true,
+  rules : {
+    "@typescript-eslint/no-explicit-any" : "warn",
+    "@typescript-eslint/no-unsafe-assignment" : "warn",
+    "@typescript-eslint/no-unsafe-member-access": "warn",
+    "@typescript-eslint/no-unsafe-argument" : "warn"
+  }
 };

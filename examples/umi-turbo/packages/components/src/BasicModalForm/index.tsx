@@ -20,7 +20,6 @@ type BasicModalFormProps<T> = {
   triggerRender?: JSX.Element | boolean;
   titleRender?: JSX.Element | null;
   modalProps?: ModalProps;
-  grid?: boolean;
   isSingleRow?: boolean;
   visible?: boolean;
   loading?: boolean;
@@ -33,7 +32,6 @@ const BasicModalForm = <T,>(
     columns = [],
     triggerRender,
     modalProps = {},
-    grid = true,
     titleRender = null,
     isSingleRow = true,
     loading = false,

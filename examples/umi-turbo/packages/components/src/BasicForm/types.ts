@@ -18,7 +18,7 @@ import { type FormInstance, type FormItemProps } from 'antd';
  * col : 占用的栅格列
  */
 export type ComponentConfig = {
-  RenderFormItem?: (form: FormInstance<any>) => React.ReactNode;
+  RenderFormItem?: (form: FormInstance) => React.ReactNode;
   hideInColumns?: boolean;
   hideInDisplay?: boolean;
   col?: number;
@@ -102,6 +102,6 @@ type BasicSwtichConfig = {
 type CustomConfig = {
   component: 'custom';
   itemProps: FormItemProps & {
-    fieldProps?: Record<string, any>;
+    fieldProps?: Record<string , any>;
   };
 };

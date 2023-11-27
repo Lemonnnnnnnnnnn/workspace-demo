@@ -6,12 +6,12 @@ import type { ComponentConfig } from '../types';
 
 type IProps = {
   title: string;
-  form: FormInstance<any>;
+  form: FormInstance;
   columns: ComponentConfig[];
   headerRender?: JSX.Element | boolean;
 };
 
-const BasicFormGroup: React.FC<any> = ({ title, form, columns, headerRender = true }: IProps) => {
+const BasicFormGroup = ({ title, form, columns, headerRender = true }: IProps) => {
   let Header: JSX.Element = <BasicTitle title={title} />;
 
   if (typeof headerRender == 'boolean') {

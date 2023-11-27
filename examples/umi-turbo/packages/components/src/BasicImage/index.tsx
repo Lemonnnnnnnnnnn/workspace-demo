@@ -1,10 +1,16 @@
-import { Image } from 'antd';
-import styles from './index.less';
-import { type ImageProps } from 'antd';
+import { Image } from "antd";
+import styles from "./index.less";
+import { type ImageProps } from "antd";
 
-const BasicImage: React.FC<ImageProps> = props => {
-  // @ts-expect-error
-  const src = props?.src || props?.preview?.src || 'error';
+const BasicImage: React.FC<ImageProps> = (props) => {
+  let src = "error";
+
+  if (props.src) {
+    src = props.src;
+  } else if (props.preview && typeof props.preview !== "boolean") {
+    src = props.preview.src ?? "error";
+  }
+
   return (
     <Image
       preview={!!props?.src}

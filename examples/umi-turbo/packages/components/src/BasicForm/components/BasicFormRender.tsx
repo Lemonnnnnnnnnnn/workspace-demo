@@ -1,16 +1,11 @@
 import { Col, Form, type FormInstance, Row } from "antd";
-import type {  ComponentConfig } from "../types";
+import type { ComponentConfig } from "../types";
 import * as BasicComponents from "../../BasicFormComponent";
 import { ProFormSwitch } from "@ant-design/pro-components";
 import { type Rule, type RuleObject } from "antd/lib/form";
 import { produce } from "immer";
 
 const rowGapLayout = { xs: 8, sm: 16, md: 24 };
-
-// 将对象中的某些属性去除
-type CustomRequired<T, K extends keyof T> = {
-  [P in K]-?: T[P];
-} & Omit<T, K>;
 
 function isFunction(v: unknown) {
   if (typeof v === "function") return true;
@@ -33,30 +28,30 @@ const BasicFormItem = (
     form,
   } = componentConfig;
   if (component === "custom") {
-    // @ts-expect-error
     return renderCustomFormItem({ itemProps, col, RenderFormItem, form });
   } else {
     const Item = coms[component];
+
     const rules = addonRequired({ itemProps });
 
     return (
       <Col span={col}>
-        {/* @ts-expect-error */}
+        {/* @ts-expect-error antd-pro components 组件里报的类型错误 */}
         <Item {...itemProps} label={itemProps.label} rules={rules} />
       </Col>
     );
   }
 };
 
-
 const renderCustomFormItem = ({
   itemProps,
   col,
   RenderFormItem,
   form,
-}: CustomRequired<ComponentConfig, "RenderFormItem"> & {
-  form: FormInstance<any>;
+}: Partial<ComponentConfig> & {
+  form: FormInstance;
 }) => {
+  if (!RenderFormItem) return null;
   return (
     <Col span={col}>
       <Form.Item {...itemProps}>{RenderFormItem(form)}</Form.Item>
@@ -73,7 +68,7 @@ const addonRequired = ({ itemProps }: Pick<ComponentConfig, "itemProps">) => {
   const newRules = produce(rules || [], (draft) => {
     draft.push({
       required: true,
-      message: `请输入${label}`,
+      message: typeof label === "string" ? `请输入${label}` : "请输入",
     });
   });
 
