@@ -1,9 +1,9 @@
 import { Col, Form, type FormInstance, Row } from "antd";
-import type { ComponentConfig } from "../types";
-import * as BasicComponents from "../../BasicFormComponent";
 import { ProFormSwitch } from "@ant-design/pro-components";
 import { type Rule, type RuleObject } from "antd/lib/form";
 import { produce } from "immer";
+import * as BasicComponents from "../../BasicFormComponent";
+import type { ComponentConfig } from "../types";
 
 const rowGapLayout = { xs: 8, sm: 16, md: 24 };
 
@@ -29,7 +29,7 @@ const BasicFormItem = (
   } = componentConfig;
   if (component === "custom") {
     return renderCustomFormItem({ itemProps, col, RenderFormItem, form });
-  } else {
+  } 
     const Item = coms[component];
 
     const rules = addonRequired({ itemProps });
@@ -40,7 +40,7 @@ const BasicFormItem = (
         <Item {...itemProps} label={itemProps.label} rules={rules} />
       </Col>
     );
-  }
+  
 };
 
 const renderCustomFormItem = ({
@@ -81,12 +81,10 @@ const hasOwnRequired = (rules?: Rule[]) => {
   for (const rule of rules) {
     if (isFunction(rule)) {
       continue;
-    } else {
-      if ((rule as RuleObject).required) {
+    } else if ((rule as RuleObject).required) {
         result = true;
         break;
       }
-    }
   }
   return result;
 };
@@ -96,7 +94,7 @@ export default ({
   form,
 }: {
   columns: ComponentConfig[];
-  form: FormInstance<any>;
+  form: FormInstance;
 }) => {
   return (
     <Row gutter={rowGapLayout}>

@@ -1,12 +1,12 @@
 import { Modal, Spin } from "antd";
 import { type ModalProps } from "antd";
-import styles from "./index.less";
 import { useState } from "react";
+import styles from "./index.less";
 
 interface Props {
   size?: "small" | "middle" | "large" | "biglarge";
   bodyHeight?: number | string;
-  onOk?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => Promise<any> | void;
+  onOk?: (e: React.MouseEvent<HTMLElement>) => Promise<any>;
   loading?: boolean;
   hasLoading?: boolean;
 }
@@ -23,16 +23,13 @@ const BasicModal: React.FC<ModalProps & Props> = ({
 }) => {
   const [btnLoading, setBtnLoading] = useState(false);
 
-  const onOk = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const onOk = (e: React.MouseEvent<HTMLElement>) => {
     if (!_onOk) return;
     setBtnLoading(true);
     const result = _onOk(e);
 
     if (result instanceof Promise) {
-      result
-        .catch((e) => {
-          console.log(e);
-        })
+      void result
         .finally(() => {
           setBtnLoading(false);
         });

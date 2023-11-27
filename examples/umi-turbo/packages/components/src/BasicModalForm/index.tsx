@@ -1,16 +1,16 @@
 import { ModalForm, type ModalFormProps } from "@ant-design/pro-components";
 import { Button, Form, type FormInstance, type ModalProps, Spin } from "antd";
 import { type Ref as ReactRef, forwardRef, useImperativeHandle } from "react";
-import styles from "./index.less";
 import { type ComponentConfig } from "@/BasicForm/types";
-import { BasicFormRender } from "..";
+import BasicFormRender from "../BasicForm/components/BasicFormRender";
+import styles from "./index.less";
 
 /**
  * @see https://procomponents.ant.design/components/modal-form
  */
 
 export declare type FormRef = {
-  form: FormInstance<any>;
+  form: FormInstance;
 };
 
 type BasicModalFormProps<T> = {
@@ -47,7 +47,7 @@ const BasicModalForm = <T,>(
 
   let triggerConponent = <Button type="primary">新增</Button>;
 
-  if (typeof triggerRender == "boolean") {
+  if (typeof triggerRender === "boolean") {
     if (!triggerRender) triggerConponent = <></>;
   } else {
     triggerConponent = triggerRender || triggerConponent;
@@ -63,7 +63,9 @@ const BasicModalForm = <T,>(
         keyboard: false,
         maskClosable: false,
         destroyOnClose: true,
-        afterClose: () => form.resetFields(),
+        afterClose: () => {
+          form.resetFields();
+        },
         ...modalProps,
       }}
       layout={isSingleRow ? "horizontal" : "vertical"}

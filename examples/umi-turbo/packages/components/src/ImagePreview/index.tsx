@@ -1,5 +1,4 @@
 import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
-
 import {
   ZoomInOutlined,
   ZoomOutOutlined,
@@ -7,7 +6,6 @@ import {
   RedoOutlined,
   DownloadOutlined,
 } from "@ant-design/icons";
-
 import styles from "./index.less";
 
 const iconStyle = { color: "#fff", fontSize: 20 };
@@ -31,26 +29,26 @@ export default forwardRef<
 
   //放大
   const imgToBigger = () => {
-    const a = parseInt(imgScale) + 5 + "%";
+    const a = `${parseInt(imgScale) + 5  }%`;
     setImgScale(a);
   };
   //缩小
   const imgToSmaller = () => {
-    const a = parseInt(imgScale) + -5 + "%";
+    const a = `${parseInt(imgScale) + -5  }%`;
     setImgScale(a);
   };
   //左旋转
   const imgToLeftRoll = () => {
     const a = (imgCurrent - 90) % 360;
     setImgCurrent(a);
-    setImgTransform("rotate(" + a + "deg)");
+    setImgTransform(`rotate(${  a  }deg)`);
   };
   //右旋转
   const imgToRightRoll = () => {
     const a = (imgCurrent + 90) % 360;
 
     setImgCurrent(a);
-    setImgTransform("rotate(" + a + "deg)");
+    setImgTransform(`rotate(${  a  }deg)`);
   };
   // 下载
   const downloadImage = () => {
@@ -58,7 +56,7 @@ export default forwardRef<
     const url = imgSrc;
     xhr.responseType = "blob";
     xhr.onload = function () {
-      if (xhr.status == 200) {
+      if (xhr.status === 200) {
         const blob = this.response;
         const a: HTMLAnchorElement = document.createElement("a");
 
@@ -84,8 +82,8 @@ export default forwardRef<
       closeImagePreviewModel();
     }
   }, [visible]);
-  const open = () => setVisible(true);
-  const close = () => setVisible(false);
+  const open = () => { setVisible(true); };
+  const close = () => { setVisible(false); };
 
   useImperativeHandle(ref, () => {
     return {
