@@ -22,7 +22,7 @@ const BasicForm = forwardRef<BasicFormRef, IProps>(({ children, className, ...re
 
   return (
     // <div className={styles.BasicForm}>
-    <ProForm className={`${styles.BasicForm} ${className}`} submitter={false} form={form} {...restProps}>
+    <ProForm className={`${styles.BasicForm} ${className}`} form={form} submitter={false} {...restProps}>
       {Children.map(children, child => {
         if (!React.isValidElement(child)) {
           return child;

@@ -17,9 +17,7 @@ const coms = {
   BasicSwitch: ProFormSwitch,
 };
 
-const BasicFormItem = (
-  componentConfig: ComponentConfig & { form: FormInstance }
-) => {
+function BasicFormItem(componentConfig: ComponentConfig & { form: FormInstance }) {
   const {
     RenderFormItem,
     component = "BasicInput",
@@ -41,7 +39,7 @@ const BasicFormItem = (
       </Col>
     );
   
-};
+}
 
 const renderCustomFormItem = ({
   itemProps,
@@ -89,19 +87,19 @@ const hasOwnRequired = (rules?: Rule[]) => {
   return result;
 };
 
-export default ({
+export default function({
   columns,
   form,
 }: {
   columns: ComponentConfig[];
   form: FormInstance;
-}) => {
+}) {
   return (
     <Row gutter={rowGapLayout}>
       {columns
         .filter((t) => !t.hideInColumns)
         .map((item, index) => (
-          <BasicFormItem {...item} key={index} form={form} />
+          <BasicFormItem {...item} form={form} key={index} />
         ))}
     </Row>
   );

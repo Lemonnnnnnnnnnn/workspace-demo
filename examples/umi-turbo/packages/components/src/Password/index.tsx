@@ -28,10 +28,10 @@ const Password: React.FC<Props> = ({ name, form }) => {
   return (
     <div className={styles.password}>
       <Form.Item name={name} noStyle>
-        <Input.Password placeholder="请输入" ref={refPassword} onChange={handleChange('password')} readOnly={!isPwdHidden} />
+        <Input.Password onChange={handleChange('password')} placeholder="请输入" readOnly={!isPwdHidden} ref={refPassword} />
       </Form.Item>
       <Form.Item noStyle>
-        <Input placeholder="请输入" value="" hidden={isPwdHidden} ref={refInput} onChange={handleChange('hidden')} />
+        <Input hidden={isPwdHidden} onChange={handleChange('hidden')} placeholder="请输入" ref={refInput} value="" />
       </Form.Item>
     </div>
   );

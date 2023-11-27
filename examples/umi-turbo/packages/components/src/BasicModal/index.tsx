@@ -40,6 +40,13 @@ const BasicModal: React.FC<ModalProps & Props> = ({
 
   return (
     <Modal
+      className={styles.BasicModal}
+      confirmLoading={confirmLoading || btnLoading}
+      destroyOnClose
+      keyboard={false}
+      maskClosable={false}
+      okText="确认"
+      onOk={onOk}
       width={
         (size === "small" && 600) ||
         (size === "middle" && 800) ||
@@ -47,13 +54,6 @@ const BasicModal: React.FC<ModalProps & Props> = ({
         (size === "biglarge" && 1200) ||
         undefined
       }
-      keyboard={false}
-      maskClosable={false}
-      onOk={onOk}
-      okText="确认"
-      confirmLoading={confirmLoading || btnLoading}
-      destroyOnClose
-      className={styles.BasicModal}
       {...restProps}
       bodyStyle={{
         height: bodyHeight,
@@ -63,12 +63,12 @@ const BasicModal: React.FC<ModalProps & Props> = ({
     >
       {hasLoading ? (
         <Spin
+          spinning={loading === true}
           style={{
             maxHeight: "none",
             height: bodyHeight ? Number(bodyHeight) - 48 : "none",
             backgroundColor: "#fff",
           }}
-          spinning={loading === true}
         >
           {children}
         </Spin>

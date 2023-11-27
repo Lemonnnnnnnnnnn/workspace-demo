@@ -1,9 +1,9 @@
-import { ModalForm, type ModalFormProps } from "@ant-design/pro-components";
-import { Button, Form, type FormInstance, type ModalProps, Spin } from "antd";
-import { type Ref as ReactRef, forwardRef, useImperativeHandle } from "react";
-import { type ComponentConfig } from "@/BasicForm/types";
-import BasicFormRender from "../BasicForm/components/BasicFormRender";
-import styles from "./index.less";
+import { ModalForm, type ModalFormProps } from '@ant-design/pro-components';
+import { Button, Form, type FormInstance, type ModalProps, Spin } from 'antd';
+import { type Ref as ReactRef, forwardRef, useImperativeHandle } from 'react';
+import { type ComponentConfig } from '@/BasicForm/types';
+import BasicFormRender from '../BasicForm/components/BasicFormRender';
+import styles from './index.less';
 
 /**
  * @see https://procomponents.ant.design/components/modal-form
@@ -25,9 +25,9 @@ type BasicModalFormProps<T> = {
   loading?: boolean;
 } & ModalFormProps<T>;
 
-const BasicModalForm = <T,>(
+function BasicModalForm<T>(
   {
-    title = "新建表单",
+    title = '新建表单',
     children,
     columns = [],
     triggerRender,
@@ -37,28 +37,29 @@ const BasicModalForm = <T,>(
     loading = false,
     ...restProps
   }: BasicModalFormProps<T>,
-  ref: any
-) => {
+  ref: any,
+) {
   const [form] = Form.useForm();
 
   useImperativeHandle(ref, () => ({
     form,
   }));
 
-  let triggerConponent = <Button type="primary">新增</Button>;
+  let triggerConponent: JSX.Element | undefined = (
+    <Button type="primary">新增</Button>
+  );
 
-  if (typeof triggerRender === "boolean") {
-    if (!triggerRender) triggerConponent = <></>;
+  if (typeof triggerRender === 'boolean') {
+    if (!triggerRender) triggerConponent = undefined;
   } else {
     triggerConponent = triggerRender || triggerConponent;
   }
 
   return (
     <ModalForm<T>
-      title={title}
       className={styles.BasicModalForm}
-      trigger={triggerConponent}
       form={form}
+      layout={isSingleRow ? 'horizontal' : 'vertical'}
       modalProps={{
         keyboard: false,
         maskClosable: false,
@@ -68,13 +69,14 @@ const BasicModalForm = <T,>(
         },
         ...modalProps,
       }}
-      layout={isSingleRow ? "horizontal" : "vertical"}
       submitTimeout={2000}
+      title={title}
+      trigger={triggerConponent}
       {...restProps}
     >
       <Spin
-        style={{ maxHeight: "none", backgroundColor: "#fff" }}
         spinning={loading}
+        style={{ maxHeight: 'none', backgroundColor: '#fff' }}
       >
         {titleRender}
         <BasicFormRender columns={columns} form={form} />
@@ -82,8 +84,8 @@ const BasicModalForm = <T,>(
       </Spin>
     </ModalForm>
   );
-};
+}
 
 export default forwardRef(BasicModalForm) as <T>(
-  props: BasicModalFormProps<T> & { ref?: ReactRef<any> }
+  props: BasicModalFormProps<T> & { ref?: ReactRef<any> },
 ) => JSX.Element;

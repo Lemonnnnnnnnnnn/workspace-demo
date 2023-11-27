@@ -11,11 +11,11 @@ type IProps = {
   headerRender?: JSX.Element | boolean;
 };
 
-const BasicFormGroup = ({ title, form, columns, headerRender = true }: IProps) => {
-  let Header: JSX.Element = <BasicTitle title={title} />;
+function BasicFormGroup({ title, form, columns, headerRender = true }: IProps) {
+  let Header: JSX.Element | null = <BasicTitle title={title} />;
 
   if (typeof headerRender === 'boolean') {
-    if (!headerRender) Header = <></>;
+    if (!headerRender) Header = null;
   } else {
     Header = headerRender;
   }
@@ -23,9 +23,9 @@ const BasicFormGroup = ({ title, form, columns, headerRender = true }: IProps) =
   return (
     <div className={styles.BasicFormGroup}>
       {Header}
-      <BasicFormRender form={form} columns={columns} />
+      <BasicFormRender columns={columns} form={form} />
     </div>
   );
-};
+}
 
 export default BasicFormGroup;
