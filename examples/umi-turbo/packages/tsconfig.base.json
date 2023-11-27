@@ -3,7 +3,6 @@
   "display": "Default",
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "outDir": "dist",
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -16,7 +15,6 @@
     "noUncheckedIndexedAccess": true,
     "moduleResolution": "Bundler",
     "module": "ESNext",
-    "noEmit": true,
     "lib": ["es2022", "dom", "dom.iterable"],
     "paths": {
       "@/*": [
