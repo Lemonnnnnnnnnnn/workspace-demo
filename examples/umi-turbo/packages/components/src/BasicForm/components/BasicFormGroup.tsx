@@ -1,21 +1,21 @@
+import type { FormInstance } from 'antd';
 import styles from '../index.less';
+import type { ComponentConfig } from '../types';
 import BasicTitle from './BasicTitle';
 import BasicFormRender from './BasicFormRender';
-import type { FormInstance } from 'antd';
-import type { ComponentConfig } from '../types';
 
 type IProps = {
   title: string;
-  form: FormInstance<any>;
+  form: FormInstance;
   columns: ComponentConfig[];
   headerRender?: JSX.Element | boolean;
 };
 
-const BasicFormGroup: React.FC<any> = ({ title, form, columns, headerRender = true }: IProps) => {
-  let Header: JSX.Element = <BasicTitle title={title} />;
+function BasicFormGroup({ title, form, columns, headerRender = true }: IProps) {
+  let Header: JSX.Element | null = <BasicTitle title={title} />;
 
-  if (typeof headerRender == 'boolean') {
-    if (!headerRender) Header = <></>;
+  if (typeof headerRender === 'boolean') {
+    if (!headerRender) Header = null;
   } else {
     Header = headerRender;
   }
@@ -23,9 +23,9 @@ const BasicFormGroup: React.FC<any> = ({ title, form, columns, headerRender = tr
   return (
     <div className={styles.BasicFormGroup}>
       {Header}
-      <BasicFormRender form={form} columns={columns} />
+      <BasicFormRender columns={columns} form={form} />
     </div>
   );
-};
+}
 
 export default BasicFormGroup;

@@ -1,81 +1,79 @@
-import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
-
+import { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import {
   ZoomInOutlined,
   ZoomOutOutlined,
   UndoOutlined,
   RedoOutlined,
   DownloadOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
+import styles from './index.less';
 
-import styles from "./index.less";
-
-const iconStyle = { color: "#fff", fontSize: 20 };
+const iconStyle = { color: '#fff', fontSize: 20 };
 
 export type ImagePreviewRef = {
   open: () => void;
   close: () => void;
 };
 
-export default forwardRef<
+const ImagePreview = forwardRef<
   ImagePreviewRef,
   { imgSrc: string; imgName?: string; maskClosable?: boolean }
->(({ imgSrc, imgName = "preview", maskClosable = true }, ref) => {
+>(({ imgSrc, imgName = 'preview', maskClosable = true }, ref) => {
   const [visible, setVisible] = useState(false);
 
-  const [imgScale, setImgScale] = useState("100%");
+  const [imgScale, setImgScale] = useState('100%');
 
   const [imgCurrent, setImgCurrent] = useState(0);
 
-  const [imgTransform, setImgTransform] = useState("");
+  const [imgTransform, setImgTransform] = useState('');
 
   //放大
   const imgToBigger = () => {
-    let a = parseInt(imgScale) + 5 + "%";
+    const a = `${parseInt(imgScale) + 5}%`;
     setImgScale(a);
   };
   //缩小
   const imgToSmaller = () => {
-    let a = parseInt(imgScale) + -5 + "%";
+    const a = `${parseInt(imgScale) + -5}%`;
     setImgScale(a);
   };
   //左旋转
   const imgToLeftRoll = () => {
-    let a = (imgCurrent - 90) % 360;
+    const a = (imgCurrent - 90) % 360;
     setImgCurrent(a);
-    setImgTransform("rotate(" + a + "deg)");
+    setImgTransform(`rotate(${a}deg)`);
   };
   //右旋转
   const imgToRightRoll = () => {
-    let a = (imgCurrent + 90) % 360;
+    const a = (imgCurrent + 90) % 360;
 
     setImgCurrent(a);
-    setImgTransform("rotate(" + a + "deg)");
+    setImgTransform(`rotate(${a}deg)`);
   };
   // 下载
   const downloadImage = () => {
     const xhr = new XMLHttpRequest();
-    let url = imgSrc;
-    xhr.responseType = "blob";
+    const url = imgSrc;
+    xhr.responseType = 'blob';
     xhr.onload = function () {
-      if (xhr.status == 200) {
-        let blob = this.response;
-        let a: HTMLAnchorElement = document.createElement("a");
+      if (xhr.status === 200) {
+        const blob = this.response;
+        const a: HTMLAnchorElement = document.createElement('a');
 
-        a.setAttribute("style", "display:none");
+        a.setAttribute('style', 'display:none');
 
         const reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onload = function (e) {
           a.download = `${imgName}.jpg`;
-          a.setAttribute("href", e.target?.result as string);
+          a.setAttribute('href', e.target?.result as string);
           document.body.append(a);
           a.click();
           a.remove();
         };
       }
     };
-    xhr.open("get", url, true);
+    xhr.open('get', url, true);
     xhr.send();
   };
 
@@ -84,8 +82,12 @@ export default forwardRef<
       closeImagePreviewModel();
     }
   }, [visible]);
-  const open = () => setVisible(true);
-  const close = () => setVisible(false);
+  const open = () => {
+    setVisible(true);
+  };
+  const close = () => {
+    setVisible(false);
+  };
 
   useImperativeHandle(ref, () => {
     return {
@@ -95,8 +97,8 @@ export default forwardRef<
   });
   const closeImagePreviewModel = () => {
     setImgCurrent(0);
-    setImgScale("100%");
-    setImgTransform("");
+    setImgScale('100%');
+    setImgTransform('');
   };
   const maskClick = () => {
     if (maskClosable) close();
@@ -105,18 +107,18 @@ export default forwardRef<
   return (
     <div
       className={styles.previewBox}
-      style={{ display: visible ? "flex" : "none" }}
+      style={{ display: visible ? 'flex' : 'none' }}
     >
-      <div className={styles.mask} onClick={maskClick}></div>
+      <div className={styles.mask} onClick={maskClick} />
       <img
         src={imgSrc}
         style={{
-          width: "auto",
-          height: "auto",
-          maxWidth: "100vw",
-          maxHeight: "calc(100vh - 158px)",
-          position: "relative",
-          margin: "0 auto",
+          width: 'auto',
+          height: 'auto',
+          maxWidth: '100vw',
+          maxHeight: 'calc(100vh - 158px)',
+          position: 'relative',
+          margin: '0 auto',
           scale: imgScale,
           transform: imgTransform,
         }}
@@ -141,3 +143,5 @@ export default forwardRef<
     </div>
   );
 });
+
+export default ImagePreview;

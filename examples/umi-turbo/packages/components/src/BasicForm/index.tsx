@@ -1,13 +1,12 @@
 import { ProForm } from '@ant-design/pro-components';
-import BasicFormGroup from './components/BasicFormGroup';
 import { Form, type FormInstance } from 'antd';
-import { Children, cloneElement, forwardRef, useImperativeHandle } from 'react';
-import styles from './index.less';
+import React, { Children, cloneElement, forwardRef, useImperativeHandle } from 'react';
 import {type  ProFormProps } from '@ant-design/pro-components';
-import React from 'react';
+import styles from './index.less';
+import BasicFormGroup from './components/BasicFormGroup';
 
 export type BasicFormRef = {
-  form: FormInstance<any>;
+  form: FormInstance;
 };
 
 export type IProps = {
@@ -23,7 +22,7 @@ const BasicForm = forwardRef<BasicFormRef, IProps>(({ children, className, ...re
 
   return (
     // <div className={styles.BasicForm}>
-    <ProForm className={`${styles.BasicForm} ${className}`} submitter={false} form={form} {...restProps}>
+    <ProForm className={`${styles.BasicForm} ${className}`} form={form} submitter={false} {...restProps}>
       {Children.map(children, child => {
         if (!React.isValidElement(child)) {
           return child;

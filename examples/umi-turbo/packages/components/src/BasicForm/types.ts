@@ -1,4 +1,5 @@
 import type { ProFormSwitchProps } from '@ant-design/pro-components';
+import { type FormInstance, type FormItemProps } from 'antd';
 import {
   type BasicDigitTypes,
   type BasicInputTypes,
@@ -9,16 +10,15 @@ import {
   type BasicDatePickerTypes,
   type BasicTextAreaTypes,
 } from '../BasicFormComponent';
-import { type FormInstance, type FormItemProps } from 'antd';
 
 /**
  * RenderFormItem: 自定义渲染组件，包裹在Form.Item内
  * hideInColumns: 完全隐藏(不可见，表单中也没有这个值)，用于条件渲染组件
- * itemProps:{hidden: true} : 部分隐藏(visibility:hidden，表单中存在这个值)
+ * itemProps:{ hidden: true } : 部分隐藏(visibility:hidden，表单中存在这个值)
  * col : 占用的栅格列
  */
 export type ComponentConfig = {
-  RenderFormItem?: (form: FormInstance<any>) => React.ReactNode;
+  RenderFormItem?: (form: FormInstance) => React.ReactNode;
   hideInColumns?: boolean;
   hideInDisplay?: boolean;
   col?: number;
@@ -102,6 +102,6 @@ type BasicSwtichConfig = {
 type CustomConfig = {
   component: 'custom';
   itemProps: FormItemProps & {
-    fieldProps?: Record<string, any>;
+    fieldProps?: Record<string , any>;
   };
 };

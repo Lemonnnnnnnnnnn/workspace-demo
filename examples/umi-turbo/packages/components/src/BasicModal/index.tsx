@@ -1,29 +1,38 @@
-import { Modal, Spin } from 'antd';
-import { type ModalProps } from 'antd';
-import styles from './index.less';
-import { useEffect, useState } from 'react';
+import { Modal, Spin } from "antd";
+import { type ModalProps } from "antd";
+import { useState } from "react";
+import styles from "./index.less";
 
 interface Props {
-  size?: 'small' | 'middle' | 'large' | 'biglarge';
+  size?: "small" | "middle" | "large" | "biglarge";
   bodyHeight?: number | string;
-  onOk?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => Function | Promise<any> | void;
+  onOk?: (e: React.MouseEvent<HTMLElement>) => Promise<any>;
   loading?: boolean;
   hasLoading?: boolean;
 }
 
-const BasicModal: React.FC<ModalProps & Props> = ({ size, bodyHeight, loading, children, hasLoading = true, onOk: _onOk, confirmLoading, ...restProps }) => {
+const BasicModal: React.FC<ModalProps & Props> = ({
+  size,
+  bodyHeight,
+  loading,
+  children,
+  hasLoading = true,
+  onOk: _onOk,
+  confirmLoading,
+  ...restProps
+}) => {
   const [btnLoading, setBtnLoading] = useState(false);
 
-  const onOk = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const onOk = (e: React.MouseEvent<HTMLElement>) => {
     if (!_onOk) return;
     setBtnLoading(true);
     const result = _onOk(e);
 
-    // @ts-ignore
     if (result instanceof Promise) {
-      result.finally(() => {
-        setBtnLoading(false);
-      });
+      void result
+        .finally(() => {
+          setBtnLoading(false);
+        });
     } else {
       setBtnLoading(false);
     }
@@ -31,19 +40,36 @@ const BasicModal: React.FC<ModalProps & Props> = ({ size, bodyHeight, loading, c
 
   return (
     <Modal
-      width={(size === 'small' && 600) || (size === 'middle' && 800) || (size === 'large' && 1000) || (size === 'biglarge' && 1200) || undefined}
-      keyboard={false}
-      maskClosable={false}
-      onOk={onOk}
-      okText="确认"
+      className={styles.BasicModal}
       confirmLoading={confirmLoading || btnLoading}
       destroyOnClose
-      className={styles.BasicModal}
+      keyboard={false}
+      maskClosable={false}
+      okText="确认"
+      onOk={onOk}
+      width={
+        (size === "small" && 600) ||
+        (size === "middle" && 800) ||
+        (size === "large" && 1000) ||
+        (size === "biglarge" && 1200) ||
+        undefined
+      }
       {...restProps}
-      bodyStyle={{ height: bodyHeight, overflow: 'auto', ...restProps.bodyStyle }}
+      bodyStyle={{
+        height: bodyHeight,
+        overflow: "auto",
+        ...restProps.bodyStyle,
+      }}
     >
       {hasLoading ? (
-        <Spin style={{ maxHeight: 'none', height: bodyHeight ? Number(bodyHeight) - 48 : 'none', backgroundColor: '#fff' }} spinning={loading === true}>
+        <Spin
+          spinning={loading === true}
+          style={{
+            maxHeight: "none",
+            height: bodyHeight ? Number(bodyHeight) - 48 : "none",
+            backgroundColor: "#fff",
+          }}
+        >
           {children}
         </Spin>
       ) : (
