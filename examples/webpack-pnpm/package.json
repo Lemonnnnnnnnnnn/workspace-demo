@@ -2,14 +2,15 @@
   "name": "webpack-pnpm",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "pnpm --filter main dev",
-    "build": "pnpm --filter main build",
-    "preview": "npx http-server ./packages/main/dist",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
     "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^1.10.16"
+  }
 }

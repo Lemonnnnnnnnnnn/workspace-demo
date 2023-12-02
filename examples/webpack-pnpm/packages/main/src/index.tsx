@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { A } from "shared-ui";
+import { Button } from "shared-ui";
 
 ReactDOM.render(
   <React.StrictMode>
-    <A />
+    <Button name={"123"} />
   </React.StrictMode>,
   document.getElementById("root")
 );

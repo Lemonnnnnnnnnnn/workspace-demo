@@ -1,11 +1,1 @@
-export { default as BasicImage } from './BasicImage';
-export { default as BasicModal } from './BasicModal';
-export { default as Password } from './Password';
-export { default as BasicTabs } from './BasicTabs';
-export { default as BasicForm } from './BasicForm';
-export { default as BasicFormRender } from './BasicForm/components/BasicFormRender';
-export { default as BasicTitle } from './BasicForm/components/BasicTitle';
-export { default as BasicModalForm } from './BasicModalForm';
 export { default as NotFound } from './NotFound';
-export { default as ImagePreview } from './ImagePreview';
-export * from './BasicFormComponent';

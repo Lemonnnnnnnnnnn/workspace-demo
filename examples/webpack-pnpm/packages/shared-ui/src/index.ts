@@ -1,2 +1,2 @@
-export * from './Button'
-export * from './pages'
+export * from './Button.js'
+// export * from './pages'

@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "src/index.ts",
-  "scripts": {},
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "scripts": {
+    "dev": "father dev",
+    "build": "father build"
+  },
+  "files": ["dist"],
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "antd": "^5.11.5",
+    "father": "^4.3.7",
     "react": "^18.2.0",
     "react-hot-toast": "^2.4.1"
   },
